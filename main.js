@@ -21,6 +21,11 @@ app.get('/',(req,res)=>{
 //Proposition activities
 app.post('/activities',(req,res)=>{
     res.render('proposition');
+    /**
+     * Je dois vérifier si le contenu et bon
+     * si ce n'est pas le cas, je redirige vers '/'
+     */
+
 }
 )
 
