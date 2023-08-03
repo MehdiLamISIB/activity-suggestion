@@ -1,12 +1,5 @@
 <form method="post">
 
-
-  <!--Choix du prix -->
-  <div class="form-group">
-    <label for="peopleNumber">Nombre de personnes</label>
-    <input type="peopleNum" class="form-control" id="peopleNum" placeholder="10€">
-  </div>
-
   <!--Choix des categories -->
   <div class="form-group">
     <label for="exampleFormControlSelect1">Type d'activités</label>
@@ -23,11 +16,19 @@
     </select>
   </div>
 
+
+  <!--Choix du prix -->
   <div class="form-group">
-      
+    <label for="peopleNumber">Nombre de personnes</label>
+    <input type="peopleNum" class="form-control" id="peopleNum" placeholder="10€">
+  </div>
+
+
+
+  <div class="form-group">
 	  <div class="mb-3">
-	    <label for="customRange3" class="form-label">Distance de détection [5-30] avec pas de 5 : <output id="showValRange">17</output> </label>
-	    <input type="range" class="form-range" min="0" max="100" step="1" id="distance" name="distance" oninput="showValRange.value=distance.value">
+	    <label for="customRange3" class="form-label">Prix : <output id="showValRange">50</output> </label>
+	    <input type="range" class="form-range " min="0" max="100" step="1" id="price" name="price" oninput="showValRange.value=price.value">
 	  </div>
 
 </div>
