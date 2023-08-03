@@ -1,5 +1,6 @@
-// @/main.js
+//main.js
 const express = require("express");
+const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require("mongoose");
 
@@ -7,8 +8,8 @@ const mongoose = require("mongoose");
 
 
 app.set('view engine','ejs');
-
-
+app.use(bodyParser.json()); 
+app.use(express.json());
 
 
 //Index
@@ -18,16 +19,21 @@ app.get('/',(req,res)=>{
 )
 
 
-//Proposition activities
 app.post('/activities',(req,res)=>{
+    let type_activities=req.body.type_activities;
+    let participants=req.body.participants;
+    let price=req.body.price;
+    console.log(type_activities,participants,price);
     res.render('proposition');
     /**
      * Je dois vérifier si le contenu et bon
-     * si ce n'est pas le cas, je redirige vers '/'
+     * si ce n'est pas le cas, je redirige vers GET '/'
      */
 
 }
 )
+
+
 
 
 
