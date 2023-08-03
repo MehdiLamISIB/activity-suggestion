@@ -11,16 +11,16 @@ app.set('view engine','ejs');
 
 
 
-//Blacklist
+//Index
 app.get('/',(req,res)=>{
     res.render('index');
 }
 )
 
 
-
-app.post('/',(req,res)=>{
-    res.render('index');
+//Proposition activities
+app.post('/activities',(req,res)=>{
+    res.render('proposition');
 }
 )
 
