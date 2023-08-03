@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 
 
 app.set('view engine','ejs');
-app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
 
 
@@ -20,6 +20,7 @@ app.get('/',(req,res)=>{
 
 
 app.post('/activities',(req,res)=>{
+    console.log(req.body);
     let type_activities=req.body.type_activities;
     let participants=req.body.participants;
     let price=req.body.price;
