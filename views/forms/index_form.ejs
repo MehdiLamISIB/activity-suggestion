@@ -1,0 +1,37 @@
+<form method="post">
+
+
+  <!--Choix du prix -->
+  <div class="form-group">
+    <label for="peopleNumber">Nombre de personnes</label>
+    <input type="peopleNum" class="form-control" id="peopleNum" placeholder="10€">
+  </div>
+
+  <!--Choix des categories -->
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Type d'activités</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>Education</option>
+      <option>recreational</option>
+      <option>social</option>
+      <option>diy</option>
+      <option>charity</option>
+      <option>cooking</option>
+      <option>relaxation</option>
+      <option>music</option>
+      <option>busywork</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+      
+	  <div class="mb-3">
+	    <label for="customRange3" class="form-label">Distance de détection [5-30] avec pas de 5 : <output id="showValRange">17</output> </label>
+	    <input type="range" class="form-range" min="0" max="100" step="1" id="distance" name="distance" oninput="showValRange.value=distance.value">
+	  </div>
+
+</div>
+
+  <button type="submit" class="btn btn-primary">Obtenir</button>
+
+</form>
