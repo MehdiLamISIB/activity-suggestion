@@ -20,17 +20,18 @@ app.get('/',(req,res)=>{
 
 
 app.post('/activities',(req,res)=>{
+    /**
+     * Je dois vérifier si le contenu et bon
+     * si ce n'est pas le cas je redirige vers "/"
+     */
     console.log(req.body);
     let type_activities=req.body.type_activities;
     let participants=req.body.participants;
     let price=req.body.price;
     console.log(type_activities,participants,price);
-    res.render('proposition');
-    /**
-     * Je dois vérifier si le contenu et bon
-     * si ce n'est pas le cas, je redirige vers GET '/'
-     */
 
+    res.render('proposition');
+    
 }
 )
 
