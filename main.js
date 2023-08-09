@@ -5,8 +5,8 @@ const app = express();
 const mongoose = require("mongoose");
 const request=require('request');
 
-
-
+const axios = require('axios');
+//app config
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
@@ -14,7 +14,7 @@ app.use(express.json());
 
 
 
-
+// variable and other
 let api_url={
     url:'http://www.boredapi.com/api/activity/',
     method:'GET',
@@ -24,7 +24,7 @@ let api_url={
     final_url:''
 };
 
-
+let is_data_api_right=false;
 
 
 //Index
@@ -55,18 +55,34 @@ app.post('/activities',(req,res)=>{
     api_url.type=type_activities;
     api_url.max_price=price;
     api_url.participants=participants;
-    api_url.final_url=api_url.url+'?'+'type='+api_url.type+'&participants='+api_url.participants+'&minprice=0&maxprice'+(price);
+    if(api_url.type='any'){
+        api_url.final_url=api_url.url+'?'+'participants='+api_url.participants+'&minprice=0&maxprice'+(price);
+    }
+    else{
+        api_url.final_url=api_url.url+'?'+'type='+api_url.type+'&participants='+api_url.participants+'&minprice=0.00&maxprice'+(price);
+    }
     console.log(api_url.final_url);
-    /*
-    request({url:api_url.final_url, method:api_url.method},(err,res,body)=>{
+    /*request({url:api_url.final_url, method:api_url.method},(err,res,body)=>{
         console.log(body);
-    });
-    */
+        if(res.statusCode==304){
+            console.log("ERRROR");
+        }
+    });*/
+    axios.get(api_url.final_url).then(
+        (res)=>{
+            console.log("fetch data");
+            console.log(res.data);
+        }
+    ).catch(
+        (err)=>{
+            console.log("error");
+        }
+    );
     res.render('proposition');
+
     
 }
 )
-
 
 
 
