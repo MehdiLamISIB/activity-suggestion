@@ -24,8 +24,6 @@ let api_url={
     final_url:''
 };
 
-let is_data_api_right=false;
-
 
 //Index
 app.get('/',(req,res)=>{
@@ -34,11 +32,14 @@ app.get('/',(req,res)=>{
 )
 
 
-
-
-
-
 app.post('/activities',(req,res)=>{
+    /**
+     * 0 = pas de data recu
+     * 1 = les données ont été obtenu
+     * 2 = la requête obtient rien (trop de participants)
+     * -1 = il y a une erreur pour obtenir les données
+     */
+    
     /**
      * Je dois vérifier si le contenu et bon
      * si ce n'est pas le cas je redirige vers "/"
@@ -61,24 +62,28 @@ app.post('/activities',(req,res)=>{
     else{
         api_url.final_url=api_url.url+'?'+'type='+api_url.type+'&participants='+api_url.participants+'&minprice=0.00&maxprice'+(price);
     }
-    console.log(api_url.final_url);
-    /*request({url:api_url.final_url, method:api_url.method},(err,res,body)=>{
-        console.log(body);
-        if(res.statusCode==304){
-            console.log("ERRROR");
-        }
-    });*/
     axios.get(api_url.final_url).then(
-        (res)=>{
+        (response)=>{
+            json_data=response.data
             console.log("fetch data");
-            console.log(res.data);
+            console.log(json_data);
+            if(json_data.hasOwnProperty("error")){
+                status_GettingJsonData=1;
+                res.render('error/too_much_participants');
+            }
+            else{
+                status_GettingJsonData=2;
+                res.render('proposition');
+                
+            }
         }
     ).catch(
         (err)=>{
+            status_GettingJsonData=-1;
             console.log("error");
+            res.redirect("/");
         }
     );
-    res.render('proposition');
 
     
 }
