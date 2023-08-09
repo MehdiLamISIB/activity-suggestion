@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require("mongoose");
-
+const request=require('request');
 
 
 
@@ -12,11 +12,30 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
 
 
+
+
+
+let api_url={
+    url:'http://www.boredapi.com/api/activity/',
+    method:'GET',
+    type:'',
+    participants:'',
+    max_price:'',
+    final_url:''
+};
+
+
+
+
 //Index
 app.get('/',(req,res)=>{
     res.render('index');
 }
 )
+
+
+
+
 
 
 app.post('/activities',(req,res)=>{
@@ -30,6 +49,16 @@ app.post('/activities',(req,res)=>{
     let price=req.body.price;
     console.log(type_activities,participants,price);
 
+
+    price=(float(price)/100).toFixed(2).toString();
+    // requête API pour le test
+    api_url.type=type_activities;
+    api_url.max_price=price;
+    api_url.participants=participants;
+    api_url.final_url=api_url.url+'?'+
+    'type='+api_url.type+'&participants='+api_url.participants
+    +'&minprice=0&maxprice'+(price);
+    request({})
     res.render('proposition');
     
 }
