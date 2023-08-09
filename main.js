@@ -50,15 +50,18 @@ app.post('/activities',(req,res)=>{
     console.log(type_activities,participants,price);
 
 
-    price=(float(price)/100).toFixed(2).toString();
+    price=(parseFloat(price)/100).toFixed(2).toString();
     // requête API pour le test
     api_url.type=type_activities;
     api_url.max_price=price;
     api_url.participants=participants;
-    api_url.final_url=api_url.url+'?'+
-    'type='+api_url.type+'&participants='+api_url.participants
-    +'&minprice=0&maxprice'+(price);
-    request({})
+    api_url.final_url=api_url.url+'?'+'type='+api_url.type+'&participants='+api_url.participants+'&minprice=0&maxprice'+(price);
+    console.log(api_url.final_url);
+    /*
+    request({url:api_url.final_url, method:api_url.method},(err,res,body)=>{
+        console.log(body);
+    });
+    */
     res.render('proposition');
     
 }
