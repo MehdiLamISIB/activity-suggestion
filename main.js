@@ -56,7 +56,7 @@ app.post('/activities',(req,res)=>{
     api_url.type=type_activities;
     api_url.max_price=price;
     api_url.participants=participants;
-    if(api_url.type='any'){
+    if(api_url.type=='all'){
         api_url.final_url=api_url.url+'?'+'participants='+api_url.participants+'&minprice=0&maxprice'+(price);
     }
     else{
@@ -69,11 +69,11 @@ app.post('/activities',(req,res)=>{
             console.log(json_data);
             if(json_data.hasOwnProperty("error")){
                 status_GettingJsonData=1;
-                res.render('error/too_much_participants');
+                res.render('error/no_activity');
             }
             else{
                 status_GettingJsonData=2;
-                res.render('proposition');
+                res.render('proposition',{data:json_data});
                 
             }
         }
