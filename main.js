@@ -6,6 +6,34 @@ const mongoose = require("mongoose");
 const request=require('request');
 
 const axios = require('axios');
+
+
+const Activity = require('./model/model');
+
+
+
+//Start DB
+//Start DB
+//Start DB
+//Start DB
+
+mongoose.connect('mongodb://localhost:27017/BoredDB', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Connection error:'));
+db.once('open', () => {
+  console.log('Connected to the database');
+});
+
+//Start DB
+//Start DB
+//Start DB
+//Start DB
+
+
 //app config
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -44,6 +72,10 @@ app.post('/activities',(req,res)=>{
      * Je dois vérifier si le contenu et bon
      * si ce n'est pas le cas je redirige vers "/"
      */
+
+    
+
+
     console.log(req.body);
     let type_activities=req.body.type_activities;
     let participants=req.body.participants;
@@ -73,6 +105,10 @@ app.post('/activities',(req,res)=>{
             }
             else{
                 status_GettingJsonData=2;
+                
+                const newActivity=new Activity(json_data);
+                newActivity.save();
+
                 res.render('proposition',{data:json_data});
                 
             }
