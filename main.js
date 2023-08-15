@@ -32,7 +32,7 @@ app.use(express.json());
 
 
 
-// requete url que je vais envoyer pour obtenir l'activité de l'API
+// requete url que je vais envoyer pour obtenir l'activité de boredAPI
 let api_url={
     url:'http://www.boredapi.com/api/activity/',
     method:'GET',
