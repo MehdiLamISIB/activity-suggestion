@@ -22,16 +22,6 @@ mongoose.connect('mongodb://localhost:27017/BoredDB', {
   useUnifiedTopology: true,
 });
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Connection error:'));
-db.once('open', () => {
-  console.log('Connected to the database');
-});
-
-//Start DB
-//Start DB
-//Start DB
-//Start DB
 
 
 //app config
@@ -95,7 +85,7 @@ app.post('/activities',(req,res)=>{
         api_url.final_url=api_url.url+'?'+'type='+api_url.type+'&participants='+api_url.participants+'&minprice=0.00&maxprice'+(price);
     }
     axios.get(api_url.final_url).then(
-        (response)=>{
+        async (response)=>{
             json_data=response.data
             console.log("fetch data");
             console.log(json_data);
@@ -106,8 +96,6 @@ app.post('/activities',(req,res)=>{
             else{
                 status_GettingJsonData=2;
                 
-                const newActivity=new Activity(json_data);
-                newActivity.save();
 
                 res.render('proposition',{data:json_data});
                 
@@ -116,7 +104,7 @@ app.post('/activities',(req,res)=>{
     ).catch(
         (err)=>{
             status_GettingJsonData=-1;
-            console.log("error");
+            console.log(err);
             res.redirect("/");
         }
     );
