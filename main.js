@@ -32,7 +32,7 @@ app.use(express.json());
 
 
 
-// variable and other
+// requete url que je vais envoyer pour obtenir l'activité de l'API
 let api_url={
     url:'http://www.boredapi.com/api/activity/',
     method:'GET',
@@ -62,9 +62,6 @@ app.post('/activities',(req,res)=>{
      * Je dois vérifier si le contenu et bon
      * si ce n'est pas le cas je redirige vers "/"
      */
-
-    
-
 
     console.log(req.body);
     let type_activities=req.body.type_activities;
