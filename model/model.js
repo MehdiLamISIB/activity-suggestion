@@ -30,7 +30,7 @@ db.once('open', () => {
 
 
 // DB OPERATION
-const CreateActivity = async (data)=>{
+const CreateActivity = async (data,favorite)=>{
 
   const newActivity = new Activity({
     "activity": data.activity,
@@ -39,7 +39,8 @@ const CreateActivity = async (data)=>{
     "participants": data.participants,
     "price": data.price,
     "link":data.link,
-    "key":data.price
+    "key":data.price,
+    "isFavorite":favorite
 
   });
   await newActivity.save();

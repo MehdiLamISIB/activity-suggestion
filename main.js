@@ -13,8 +13,9 @@ const Activity = require('./model/model');
 const { 
     chooseActivity,
     showActivityRequest,
+    AddRequestActivity,
     getFavori,
-    getBlacklist } =require('./controller/activity');
+    getBlacklist } =require('./controller/controller');
 
 
 
@@ -47,9 +48,7 @@ app.get('/',chooseActivity)
 
 app.post('/activities',showActivityRequest)
 
-app.get('/activities',create)
-
-app.get('/activities')
+app.get('/activities',AddRequestActivity)
 
 //Favori
 app.get('/favori',getFavori)

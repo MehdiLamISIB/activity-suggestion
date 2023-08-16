@@ -1,6 +1,9 @@
 const axios = require('axios');
 const mongoose = require("mongoose");
-const {Activity,CreateActivity}=require('../model/model');
+const {
+    Activity,
+    CreateActivity
+}=require('../model/model');
 
 
 
@@ -24,8 +27,6 @@ const showActivityRequest=(req,res)=>{
         max_price:'',
         final_url:''
     };
-
-
 
     /**
      * Différent status :
@@ -57,6 +58,7 @@ const showActivityRequest=(req,res)=>{
     else{
         api_url.final_url=api_url.url+'?'+'type='+api_url.type+'&participants='+api_url.participants+'&minprice=0.00&maxprice'+(price);
     }
+    // REQUETE AVEC AXIOS
     axios.get(api_url.final_url).then(
         async (response)=>{
             json_data=response.data
@@ -83,8 +85,10 @@ const showActivityRequest=(req,res)=>{
 }
 
 
-const CreateActivity=(req,res)=>{
-    CreateActivity(req)
+const AddRequestActivity=(req,res)=>{
+    console.log("favori=",req.query);
+    CreateActivity( parseInt(,req.query) );
+    res.render("/");
 }
 
 
@@ -101,7 +105,7 @@ const getBlacklist=(req,res)=>{
 module.exports={
     chooseActivity,
     showActivityRequest,
-    CreateActivity,
+    AddRequestActivity,
     getFavori,
     getBlacklist
 }
