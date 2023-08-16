@@ -3,12 +3,14 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require("mongoose");
-const request=require('request');
+//const request=require('request');
 
 const axios = require('axios');
 
 
 const Activity = require('./model/model');
+
+const { chooseActivity,getFavori,getBlacklist } =require('./controller/activity');
 
 
 
@@ -44,10 +46,7 @@ let api_url={
 
 
 //Index
-app.get('/',(req,res)=>{
-    res.render('index');
-}
-)
+app.get('/',chooseActivity)
 
 
 app.post('/activities',(req,res)=>{
@@ -114,19 +113,13 @@ app.post('/activities',(req,res)=>{
 
 
 //Favori
-app.get('/favori',(req,res)=>{
-    res.render('favori');
-}
-)
+app.get('/favori',getFavori)
 
 
 
 
 //Blacklist
-app.get('/blacklist',(req,res)=>{
-    res.render('blacklist');
-}
-)
+app.get('/blacklist',getBlacklist)
 
 
 app.listen(3000,func=>{
