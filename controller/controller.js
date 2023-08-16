@@ -104,9 +104,9 @@ const showActivityRequest=(req,res)=>{
 
 
 const AddRequestActivity=(req,res)=>{
-    console.log("favori=",req.query);
-    CreateActivity( cache ,parseInt(req.query) );
-    res.redirect("/");
+    let favorite=req.query["favorite"];
+    console.log("favori=",favorite);
+    CreateActivity( cache ,favorite).then(res.redirect('/'));
 }
 
 
