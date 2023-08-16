@@ -1,6 +1,8 @@
 const fs=require('fs')
 const axios = require('axios');
 const mongoose = require("mongoose");
+
+//importe le fichier cache, qui sera vu comme un type==json (pour utilisation direct)
 const cache=require('../cache.json');
 
 
@@ -23,9 +25,6 @@ const cacheWriter= (jsonData)=>{
           console.log('Cache file written successfully');
         }
       });
-}
-const cacheReader=()=>{
-
 }
 
 // Controller
@@ -57,14 +56,13 @@ const showActivityRequest=(req,res)=>{
      * Je dois vérifier si le contenu et bon
      * si ce n'est pas le cas je redirige vers "/"
      */
-    console.log(req.body);
+    //console.log(req.body);
     let type_activities=req.body.type_activities;
     let participants=req.body.participants;
     let price=req.body.price;
-    console.log(type_activities,participants,price);
+    //console.log(type_activities,participants,price);
 
     price=(parseFloat(price)/100).toFixed(2).toString();
-
     // requête API pour le test
     api_url.type=type_activities;
     api_url.max_price=price;
@@ -80,8 +78,10 @@ const showActivityRequest=(req,res)=>{
     axios.get(api_url.final_url).then(
         async (response)=>{
             json_data=response.data
-            console.log("fetch data");
-            console.log(json_data);
+            
+            //console.log("fetch data");
+            //console.log(json_data);
+            
             // si une clée "error" existe, j'envoie à la page no activity
             if(json_data.hasOwnProperty("error")){
                 status_GettingJsonData=1;
