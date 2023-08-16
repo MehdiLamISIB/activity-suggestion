@@ -39,7 +39,7 @@ const CreateActivity = async (data,favorite)=>{
     "participants": data.participants,
     "price": data.price,
     "link":data.link,
-    "key":data.price,
+    "key":data.key,
     "isFavorite":favorite
 
   });

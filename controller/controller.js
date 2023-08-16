@@ -2,14 +2,14 @@ const fs=require('fs')
 const axios = require('axios');
 const mongoose = require("mongoose");
 
-//importe le fichier cache, qui sera vu comme un type==json (pour utilisation direct)
-const cache=require('../cache.json');
+
 
 
 const {
     Activity,
     CreateActivity
 }=require('../model/model');
+const { json } = require('express');
 
 
 
@@ -25,6 +25,18 @@ const cacheWriter= (jsonData)=>{
           console.log('Cache file written successfully');
         }
       });
+}
+
+
+const dataCache = (callback)=>{
+    fs.readFile('cache.json', 'utf8', (err, data) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log(data);
+        callback( JSON.parse(data) );
+      });   
 }
 
 // Controller
@@ -104,9 +116,13 @@ const showActivityRequest=(req,res)=>{
 
 
 const AddRequestActivity=(req,res)=>{
-    let favorite=req.query["favorite"];
-    console.log("favori=",favorite);
-    CreateActivity( cache ,favorite).then(res.redirect('/'));
+    dataCache((data)=>{
+        let favorite=req.query["favorite"];
+        console.log("favori=",favorite);
+        CreateActivity( data ,favorite).then(res.redirect('/'));
+    })
+    //console.log("jsonData ---> ",jsonData);
+
 }
 
 
@@ -118,6 +134,7 @@ const getFavori=(req,res)=>{
 const getBlacklist=(req,res)=>{
     res.render('blacklist');
 }
+
 
 
 module.exports={
