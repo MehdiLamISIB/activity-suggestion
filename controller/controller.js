@@ -1,5 +1,9 @@
+const fs=require('fs')
 const axios = require('axios');
 const mongoose = require("mongoose");
+const cache=require('../cache.json');
+
+
 const {
     Activity,
     CreateActivity
@@ -7,8 +11,22 @@ const {
 
 
 
-//Controller global variables
-var jsonRequestResult={}
+
+
+// CacheFile
+const cacheWriter= (jsonData)=>{
+    const jsonStr = JSON.stringify(jsonData);
+    fs.writeFile('cache.json', jsonStr, (err) => {
+        if (err) {
+          console.error('Error writing cache file:', err);
+        } else {
+          console.log('Cache file written successfully');
+        }
+      });
+}
+const cacheReader=()=>{
+
+}
 
 // Controller
 
@@ -71,7 +89,7 @@ const showActivityRequest=(req,res)=>{
             }
             else{
                 status_GettingJsonData=2;
-                jsonRequestResult=json_data;
+                cacheWriter(json_data);
                 res.render('proposition',{data:json_data});      
             }
         }
@@ -87,8 +105,8 @@ const showActivityRequest=(req,res)=>{
 
 const AddRequestActivity=(req,res)=>{
     console.log("favori=",req.query);
-    CreateActivity( parseInt(,req.query) );
-    res.render("/");
+    CreateActivity( cache ,parseInt(req.query) );
+    res.redirect("/");
 }
 
 
