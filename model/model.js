@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+
+
+// DB SCHEMA
 const activitySchema = new mongoose.Schema(
   {
     activity: String,
@@ -24,6 +27,9 @@ db.once('open', () => {
   console.log('Connected to the database');
 });
 
+
+
+// DB OPERATION
 const CreateActivity = async (data)=>{
 
   const newActivity = new Activity({
@@ -45,4 +51,7 @@ const CreateActivity = async (data)=>{
 
 
 const Activity = mongoose.model('Activity', activitySchema);
-module.exports = Activity;
+module.exports = {
+  Activity,
+  CreateActivity
+};

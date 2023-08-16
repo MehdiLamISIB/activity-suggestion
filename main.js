@@ -47,6 +47,7 @@ app.get('/',chooseActivity)
 
 app.post('/activities',showActivityRequest)
 
+app.get('/activities',create)
 
 app.get('/activities')
 
