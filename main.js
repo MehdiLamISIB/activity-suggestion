@@ -53,6 +53,9 @@ app.get('/',chooseActivity)
 //Activities
 app.post('/activities',showActivityRequest)
 
+
+// Comme j'utile déjà le post pour recevoir et afficher le formulaire
+// Je prend juste le résultat qui est sauvegardé dans le cache et je crée mon entité Activity
 app.get('/activities',AddRequestActivity)
 
 //Favori
