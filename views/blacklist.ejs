@@ -53,8 +53,8 @@
                      <td class="mx-auto">
                         <div class="btn-group">
 
-                            <a href="/" class="btn btn-danger">Supprimer</a>
-                            <a href="/"class="btn btn-dark">Blacklist</a>
+                            <button class="btn btn-danger" onclick="deleteActivities('<%= data.key %>')" >Supprimer</button>
+                            <button class="btn btn-dark">Blacklist</button>
                         </div>
                     
                     </td>  
@@ -70,5 +70,20 @@
 
 
     </div>
+
+
+
+    <script>
+        const deleteActivities = (key) => {
+            console.log("la clée est ----> ",key)
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("DELETE", `http://localhost:3000/blacklist/${key}`, false);
+            xhttp.send();
+
+            // Normalement je fais ça dans app.delete
+            // Reloading the page
+            location.reload();
+        }
+    </script>
 
 <%- include('partials/footer') %>

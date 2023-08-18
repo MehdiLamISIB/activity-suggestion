@@ -14,6 +14,7 @@ const {
     chooseActivity,
     showActivityRequest,
     AddRequestActivity,
+    DeleteBlacklist,
     getFavorite,
     getBlacklist } =require('./controller/controller');
 
@@ -46,6 +47,8 @@ app.use(express.json());
 app.get('/',chooseActivity)
 
 
+
+//Activities
 app.post('/activities',showActivityRequest)
 
 app.get('/activities',AddRequestActivity)
@@ -59,6 +62,8 @@ app.get('/favori',getFavorite)
 //Blacklist
 app.get('/blacklist',getBlacklist)
 
+
+app.delete('/blacklist/:key',DeleteBlacklist)
 
 app.listen(3000,func=>{
     console.log("hello world");

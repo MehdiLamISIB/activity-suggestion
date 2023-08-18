@@ -53,8 +53,10 @@ const CreateActivity = async (data,favorite)=>{
 const UpdateActivitiesStatus=async(key)=>{
   Activity.find({
     key:key
-  }).then();
+  })
 }
+
+
 
 //Start DB
 //Start DB
