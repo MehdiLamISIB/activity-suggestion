@@ -25,14 +25,11 @@
             <tbody>
             <% activities.forEach(function(data) { %>
                 <tr>
-
                     <td><%= data.activity %></td>
-
 
                     <td><%= data.type %></td>
 
                     <td><%= data.participants %></td>
-
 
                     <!-- <td><= data.price %></td> -->
                     <% if(data.price==0){ %>
@@ -41,34 +38,24 @@
                         <td><%= data.price*100 %>€</td>
                     <% } %>
 
-
-
                     <% if(!data.link){ %>
                         <td>pas de lien</td>
-                    <% }else{%>
-                        
+                    <% }else{%>                        
                         <td> <a href=<%= data.link %>>site web</a></td>
                     <% } %>
 
                      <td class="mx-auto">
                         <div class="btn-group">
-
                             <button class="btn btn-danger" onclick="deleteActivities('<%= data.key %>')" >Supprimer</button>
                             <button class="btn btn-dark" onclick="changeStatusActivities('<%= data.key %>')">Blacklist</button>
                         </div>
                     
                     </td>  
                 </tr>
-
-
               <% }); %>
-
+              
             </tbody>
         </table>
-
-
-
-
     </div>
 
     <script>
