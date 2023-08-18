@@ -9,7 +9,7 @@
         <table class="table table-bordered">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">Field</th>
+                <th scope="col">Attribut</th>
                 <th scope="col">Description</th>
               </tr>
             </thead>
@@ -28,10 +28,10 @@
                 <td><%= data.participants %></td>
               </tr>
               <tr>
-                <td>Price</td>
+                <td>Prix</td>
                 <!-- <td><= data.price %></td> -->
                 <% if(data.price==0){ %>
-                    <td>Free activity</td>
+                    <td>Gratuit</td>
                 <% }else{%>
                     <td><%= data.price*100 %>€</td>
                 <% } %>
@@ -39,7 +39,7 @@
 
               </tr>
               <tr>
-                <td>Link</td>
+                <td>Lien</td>
                 <% if(!data.link){ %>
                     <td>no link</td>
                 <% }else{%>
@@ -49,12 +49,12 @@
 
               <!-- La clée sera masqué après -->
               <tr>
-                <td>Key</td>
+                <td>Clef</td>
                 <td><%= data.key %></td>
               </tr>
               
               <tr>
-                <td>Accessibility</td>
+                <td>Accessibilité</td>
                 <td><%= data.accessibility*100 %> %</td>
               </tr>
 

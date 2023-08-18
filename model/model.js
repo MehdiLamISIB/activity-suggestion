@@ -21,15 +21,18 @@ const activitySchema = new mongoose.Schema(
 );
   
 //permet de démarrer la DB, à mettre au début du serveur
+/*
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error:'));
 db.once('open', () => {
   console.log('Connected to the database');
 });
+*/
 
 
+const Activity = mongoose.model('Activity', activitySchema);
 
-// DB OPERATION
+// OPERATION ON DB ONLY
 const CreateActivity = async (data,favorite)=>{
 
   const newActivity = new Activity({
@@ -45,13 +48,21 @@ const CreateActivity = async (data,favorite)=>{
   });
   await newActivity.save();
 };
+
+
+const UpdateActivitiesStatus=async(key)=>{
+  Activity.find({
+    key:key
+  }).then();
+}
+
 //Start DB
 //Start DB
 //Start DB
 //Start DB
 
 
-const Activity = mongoose.model('Activity', activitySchema);
+
 module.exports = {
   Activity,
   CreateActivity

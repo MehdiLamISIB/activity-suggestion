@@ -126,13 +126,24 @@ const AddRequestActivity=(req,res)=>{
 }
 
 
-const getFavori=(req,res)=>{
-    res.render('favori');
+const getFavorite=(req,res)=>{
+    Activity.find({isFavorite:1}).then(
+        (doc)=>{
+            res.render('favorite',{activities:doc})
+            console.log(doc);
+        }
+      ).catch((err)=>{console.log(err);}); 
+    
 };
 
 
 const getBlacklist=(req,res)=>{
-    res.render('blacklist');
+    Activity.find({isFavorite:0}).then(
+        (doc)=>{
+            res.render('blacklist',{activities:doc})
+            console.log(doc);
+        }
+      ).catch((err)=>{console.log(err);}); 
 }
 
 
@@ -141,6 +152,6 @@ module.exports={
     chooseActivity,
     showActivityRequest,
     AddRequestActivity,
-    getFavori,
+    getFavorite,
     getBlacklist
 }

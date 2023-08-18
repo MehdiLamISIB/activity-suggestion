@@ -14,7 +14,7 @@ const {
     chooseActivity,
     showActivityRequest,
     AddRequestActivity,
-    getFavori,
+    getFavorite,
     getBlacklist } =require('./controller/controller');
 
 
@@ -51,7 +51,7 @@ app.post('/activities',showActivityRequest)
 app.get('/activities',AddRequestActivity)
 
 //Favori
-app.get('/favori',getFavori)
+app.get('/favori',getFavorite)
 
 
 
