@@ -150,10 +150,19 @@ const getBlacklist=(req,res)=>{
 const DeleteBlacklist=(req,res)=>{
     Activity.deleteOne({key:req.params.key}).then(()=>{
         console.log("element supprimer")
-        res.redirect('/blacklist');
+        res.sendStatus(200);
     }).catch((err)=>{console.log(err);}); 
     
 }
+
+const DeleteFavorite=(req,res)=>{
+    Activity.deleteOne({key:req.params.key}).then(()=>{
+        console.log("element supprimer")
+        res.sendStatus(200);
+    }).catch((err)=>{console.log(err);}); 
+    
+}
+
 
 
 module.exports={
@@ -161,6 +170,7 @@ module.exports={
     showActivityRequest,
     AddRequestActivity,
     DeleteBlacklist,
+    DeleteFavorite,
     getFavorite,
     getBlacklist
 }
