@@ -126,6 +126,9 @@ const AddRequestActivity=(req,res)=>{
 }
 
 
+
+
+/// GET
 const getFavorite=(req,res)=>{
     Activity.find({isFavorite:1}).then(
         (doc)=>{
@@ -147,6 +150,9 @@ const getBlacklist=(req,res)=>{
 }
 
 
+
+
+/// DELETE
 const DeleteBlacklist=(req,res)=>{
     Activity.deleteOne({key:req.params.key}).then(()=>{
         console.log("element supprimer")
@@ -165,12 +171,22 @@ const DeleteFavorite=(req,res)=>{
 
 
 
+//UPDATE
+const ChangeToBlacklist=(req,res)=>{
+    Activity.updateOne({key:req.params.key},{isFavorite:0}).then(()=>{
+        console.log("element supprimer")
+        res.sendStatus(200);
+    }).catch((err)=>{console.log(err);}); 
+}
+
+
 module.exports={
     chooseActivity,
     showActivityRequest,
     AddRequestActivity,
     DeleteBlacklist,
     DeleteFavorite,
+    ChangeToBlacklist,
     getFavorite,
     getBlacklist
 }

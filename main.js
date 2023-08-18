@@ -15,6 +15,7 @@ const {
     showActivityRequest,
     AddRequestActivity,
     DeleteBlacklist,
+    ChangeToBlacklist,
     DeleteFavorite,
     getFavorite,
     getBlacklist } =require('./controller/controller');
@@ -57,7 +58,7 @@ app.get('/activities',AddRequestActivity)
 //Favori
 app.get('/favori',getFavorite)
 app.delete('/favori/:key',DeleteFavorite)
-
+app.put('/favori/:key',ChangeToBlacklist)
 
 
 //Blacklist
