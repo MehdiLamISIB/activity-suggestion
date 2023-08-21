@@ -12,6 +12,7 @@ const Activity = require('./model/model');
 
 const { 
     chooseActivity,
+    chooseActivitySuccess,
     showActivityRequest,
     AddRequestActivity,
     DeleteBlacklist,
@@ -45,9 +46,6 @@ app.use(express.json());
 
 //Index
 app.get('/',chooseActivity)
-
-
-
 //Activities
 app.post('/activities',showActivityRequest)
 
