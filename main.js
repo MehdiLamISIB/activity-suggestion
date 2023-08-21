@@ -72,5 +72,5 @@ app.delete('/blacklist/:key',DeleteBlacklist)
 
 // App init
 app.listen(3000,func=>{
-    console.log("hello world");
+    console.log("server start and listen ....");
 })
