@@ -42,12 +42,10 @@ const dataCache = (callback)=>{
 // Controller
 
 const chooseActivity=(req,res)=>{
-    res.render('index',{warning:false,success:false});
+    res.render('index',{warning:false});
 };
 
-const chooseActivitySuccess=(req,res)=>{
-    res.render('index',{warning:false,success:true});
-};
+
 
 
 const showActivityRequest=(req,res)=>{
@@ -109,7 +107,7 @@ const showActivityRequest=(req,res)=>{
                         res.render('proposition',{data:json_data}); 
                     }
                     else{
-                        res.render('index',{warning:true,success:false});
+                        res.render('index',{warning:true});
                     }
                 }).catch((err)=>{
                     status_GettingJsonData=-1;
@@ -133,7 +131,7 @@ const AddRequestActivity=(req,res)=>{
     dataCache((data)=>{
         let favorite=req.query["favorite"];
         console.log("favori=",favorite);
-        CreateActivity( data ,favorite).then(res.redirect('/success'))//res.render('index',{warning:false,success:true})
+        CreateActivity( data ,favorite).then(res.redirect('/'))//res.render('index',{warning:false,success:true})
     })
     //console.log("jsonData ---> ",jsonData);
 
@@ -196,7 +194,6 @@ const ChangeToBlacklist=(req,res)=>{
 
 module.exports={
     chooseActivity,
-    chooseActivitySuccess,
     showActivityRequest,
     AddRequestActivity,
     DeleteBlacklist,
