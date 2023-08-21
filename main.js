@@ -32,8 +32,6 @@ mongoose.connect('mongodb://localhost:27017/BoredDB', {
   useUnifiedTopology: true,
 });
 
-
-
 //app config
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({ extended: true }))

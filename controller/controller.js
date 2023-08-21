@@ -9,14 +9,14 @@ const {
     Activity,
     CreateActivity
 }=require('../model/model');
-const { json } = require('express');
+const { json, query } = require('express');
 
 
 
 
 
 // CacheFile
-const cacheWriter= (jsonData)=>{
+const cacheWriter = (jsonData)=>{
     const jsonStr = JSON.stringify(jsonData);
     fs.writeFile('cache.json', jsonStr, (err) => {
         if (err) {
@@ -90,19 +90,26 @@ const showActivityRequest=(req,res)=>{
     axios.get(api_url.final_url).then(
         async (response)=>{
             json_data=response.data
-            
-            //console.log("fetch data");
-            //console.log(json_data);
-            
+            //console.log("fetch data");//console.log(json_data);  
             // si une clée "error" existe, j'envoie à la page no activity
             if(json_data.hasOwnProperty("error")){
                 status_GettingJsonData=1;
                 res.render('error/no_activity');
             }
             else{
-                status_GettingJsonData=2;
-                cacheWriter(json_data);
-                res.render('proposition',{data:json_data});      
+                Activity.countDocuments({key:json_data.key}).then((count)=>{
+                    console.log(count);
+                    if(count==0){
+                        status_GettingJsonData=2;
+                        cacheWriter(json_data);
+                        res.render('proposition',{data:json_data}); 
+                    }
+                }).catch((err)=>{
+                    status_GettingJsonData=-1;
+                    console.log(err);
+                    res.redirect("/");
+                })
+
             }
         }
     ).catch(
@@ -133,7 +140,7 @@ const getFavorite=(req,res)=>{
     Activity.find({isFavorite:1}).then(
         (doc)=>{
             res.render('favorite',{activities:doc})
-            console.log(doc);
+            //console.log(doc);
         }
       ).catch((err)=>{console.log(err);}); 
     
@@ -144,7 +151,7 @@ const getBlacklist=(req,res)=>{
     Activity.find({isFavorite:0}).then(
         (doc)=>{
             res.render('blacklist',{activities:doc})
-            console.log(doc);
+            //console.log(doc);
         }
       ).catch((err)=>{console.log(err);}); 
 }
