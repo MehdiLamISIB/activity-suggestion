@@ -42,7 +42,7 @@ const dataCache = (callback)=>{
 // Controller
 
 const chooseActivity=(req,res)=>{
-    res.render('index');
+    res.render('index',{warning:false});
 };
 
 
@@ -98,11 +98,14 @@ const showActivityRequest=(req,res)=>{
             }
             else{
                 Activity.countDocuments({key:json_data.key}).then((count)=>{
-                    console.log(count);
+                    console.log("nombre de même occurence",count);
                     if(count==0){
                         status_GettingJsonData=2;
                         cacheWriter(json_data);
                         res.render('proposition',{data:json_data}); 
+                    }
+                    else{
+                        res.render('index',{warning:true});
                     }
                 }).catch((err)=>{
                     status_GettingJsonData=-1;

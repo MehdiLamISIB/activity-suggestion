@@ -3,12 +3,32 @@
     <div class="container mt-3">
     <div class="mx-auto" style="width:900px">
         <div class="container">
+
             <h1>Choisir son activité :</h1>
+            
+
+
         </div>
         <%- include('forms/index_form') %> 
     
     </div>
+
+    <% if (warning) { %>
+        <div class="alert alert-warning alert-dismissible fade show mx-4 mt-5"  data-dismiss = "alert" role="alert">
+            <strong>L'activité existe déjà </strong> Vous pouvez toujours choisir d'autre activités
+            <a href = "#" class = "close" data-dismiss = "alert">
+                &times;
+             </a>
+          </div>
+    <% } %>
+
+
     </div>
+
+
+
+
+
 
 
 <%- include('partials/footer') %>
